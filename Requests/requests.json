@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "6d3b2bfd-85f3-41e6-8a97-71cf04c5d421",
-		"name": "ASP.NET Core 6 Web API Fundamentals",
+		"name": "ASP.NET Core 6 City Info API HTTP Requests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
