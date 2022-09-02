@@ -29,7 +29,7 @@ namespace CityInfo.API.Controllers
 
             if (cityToReturn == null)
             {
-                _logger.LogInformation($"City with id {id} wasn't found when accessing the city.");
+                _logger.LogInformation($"City with id {id} wasn't found when accessing the city.", DateTime.UtcNow.ToLongTimeString());
                 return NotFound();
             }
 

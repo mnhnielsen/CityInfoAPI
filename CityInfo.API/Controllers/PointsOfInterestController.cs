@@ -24,7 +24,7 @@ namespace CityInfo.API.Controllers
 
             if (city == null)
             {
-                _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.");
+                _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.", DateTime.UtcNow.ToLongTimeString());
                 return NotFound();
             }
 
@@ -38,7 +38,7 @@ namespace CityInfo.API.Controllers
 
             if (city == null)
             {
-                _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.");
+                _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.", DateTime.UtcNow.ToLongTimeString());
                 return NotFound();
             }
 
@@ -46,7 +46,7 @@ namespace CityInfo.API.Controllers
 
             if (pointOfInterest == null)
             {
-                _logger.LogInformation($"Point of interest with id {pointOfInterestId} wasn't found when accessing points of interest.");
+                _logger.LogInformation($"Point of interest with id {pointOfInterestId} wasn't found when accessing points of interest.", DateTime.UtcNow.ToLongTimeString());
                 return NotFound();
             }
 
@@ -61,7 +61,7 @@ namespace CityInfo.API.Controllers
             var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
             if (city == null)
             {
-                _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.");
+                _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.", DateTime.UtcNow.ToLongTimeString());
                 return NotFound();
             }
 
@@ -92,7 +92,7 @@ namespace CityInfo.API.Controllers
             var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
             if (city == null)
             {
-                _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.");
+                _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.", DateTime.UtcNow.ToLongTimeString());
                 return NotFound();
             }
 
@@ -100,7 +100,7 @@ namespace CityInfo.API.Controllers
 
             if (pointOfInterestToUpdate == null)
             {
-                _logger.LogInformation($"Point of interest with id {pointOfInterestId} wasn't found when accessing points of interest.");
+                _logger.LogInformation($"Point of interest with id {pointOfInterestId} wasn't found when accessing points of interest.", DateTime.UtcNow.ToLongTimeString());
                 return NotFound();
             }
 
@@ -117,7 +117,7 @@ namespace CityInfo.API.Controllers
             var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
             if (city == null)
             {
-                _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.");
+                _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.", DateTime.UtcNow.ToLongTimeString());
                 return NotFound();
             }
 
@@ -125,7 +125,7 @@ namespace CityInfo.API.Controllers
 
             if (pointOfInterestFromStore == null)
             {
-                _logger.LogInformation($"Point of interest with id {pointOfInterestId} wasn't found when accessing points of interest.");
+                _logger.LogInformation($"Point of interest with id {pointOfInterestId} wasn't found when accessing points of interest.", DateTime.UtcNow.ToLongTimeString());
                 return NotFound();
             }
 
@@ -154,7 +154,7 @@ namespace CityInfo.API.Controllers
             var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
             if (city == null)
             {
-                _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.");
+                _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.", DateTime.UtcNow.ToLongTimeString());
                 return NotFound();
             }
 
@@ -162,7 +162,7 @@ namespace CityInfo.API.Controllers
 
             if (pointOfInterestFromStore == null)
             {
-                _logger.LogInformation($"Point of interest with id {pointOfInterestId} wasn't found when accessing points of interest.");
+                _logger.LogInformation($"Point of interest with id {pointOfInterestId} wasn't found when accessing points of interest.", DateTime.UtcNow.ToLongTimeString());
                 return NotFound();
             }
 

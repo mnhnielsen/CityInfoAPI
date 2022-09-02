@@ -24,7 +24,7 @@ namespace CityInfo.API.Controllers
 
             if (!System.IO.File.Exists(pathToFile))
             {
-                _logger.LogInformation($"File not found");
+                _logger.LogInformation($"File not found", DateTime.UtcNow.ToLongTimeString());
                 return NotFound();
 
 
