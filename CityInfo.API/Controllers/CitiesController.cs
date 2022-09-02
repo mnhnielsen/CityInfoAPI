@@ -8,6 +8,13 @@ namespace CityInfo.API.Controllers
     [Route("api/cities")]
     public class CitiesController : ControllerBase
     {
+        private readonly ILogger<CitiesController> _logger;
+
+        public CitiesController(ILogger<CitiesController> logger)
+        {
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        }
+
         [HttpGet()]
         public ActionResult<IEnumerable<CityDto>> GetCities()
         {
@@ -21,7 +28,10 @@ namespace CityInfo.API.Controllers
             var cityToReturn = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == id);
 
             if (cityToReturn == null)
+            {
+                _logger.LogInformation($"City with id {id} wasn't found when accessing the city.");
                 return NotFound();
+            }
 
             return Ok(cityToReturn);
         }
