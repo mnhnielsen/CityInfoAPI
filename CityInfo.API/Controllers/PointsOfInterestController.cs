@@ -9,13 +9,24 @@ namespace CityInfo.API.Controllers
     [ApiController]
     public class PointsOfInterestController : ControllerBase
     {
+
+        private readonly ILogger<PointsOfInterestController> _logger;
+
+        public PointsOfInterestController(ILogger<PointsOfInterestController> logger)
+        {
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        }
+
         [HttpGet]
         public ActionResult<IEnumerable<PointOfInterestDto>> GetPointsOfInterest(int cityId)
         {
             var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
 
             if (city == null)
+            {
+                _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.");
                 return NotFound();
+            }
 
             return Ok(city.PointsOfInterests);
         }
@@ -26,12 +37,18 @@ namespace CityInfo.API.Controllers
             var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
 
             if (city == null)
+            {
+                _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.");
                 return NotFound();
+            }
 
             var pointOfInterest = city.PointsOfInterests.FirstOrDefault(c => c.Id == pointOfInterestId);
 
             if (pointOfInterest == null)
+            {
+                _logger.LogInformation($"Point of interest with id {pointOfInterestId} wasn't found when accessing points of interest.");
                 return NotFound();
+            }
 
             return Ok(pointOfInterest);
         }
@@ -43,7 +60,10 @@ namespace CityInfo.API.Controllers
 
             var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
             if (city == null)
+            {
+                _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.");
                 return NotFound();
+            }
 
             //demo purposes - to be improved
             var id = CitiesDataStore.Current.Cities.SelectMany(
@@ -71,12 +91,18 @@ namespace CityInfo.API.Controllers
         {
             var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
             if (city == null)
+            {
+                _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.");
                 return NotFound();
+            }
 
             var pointOfInterestToUpdate = city.PointsOfInterests.FirstOrDefault(c => c.Id == pointOfInterestId);
 
             if (pointOfInterestToUpdate == null)
+            {
+                _logger.LogInformation($"Point of interest with id {pointOfInterestId} wasn't found when accessing points of interest.");
                 return NotFound();
+            }
 
             pointOfInterestToUpdate.Name = pointOfInterest.Name;
             pointOfInterestToUpdate.Description = pointOfInterest.Description;
@@ -90,12 +116,18 @@ namespace CityInfo.API.Controllers
         {
             var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
             if (city == null)
+            {
+                _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.");
                 return NotFound();
+            }
 
             var pointOfInterestFromStore = city.PointsOfInterests.FirstOrDefault(c => c.Id == pointOfInterestId);
 
             if (pointOfInterestFromStore == null)
+            {
+                _logger.LogInformation($"Point of interest with id {pointOfInterestId} wasn't found when accessing points of interest.");
                 return NotFound();
+            }
 
             var pointOfInterestToPatch = new PointOfInterestForUpdateDto()
             {
@@ -121,12 +153,18 @@ namespace CityInfo.API.Controllers
         {
             var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
             if (city == null)
+            {
+                _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.");
                 return NotFound();
+            }
 
             var pointOfInterestFromStore = city.PointsOfInterests.FirstOrDefault(c => c.Id == pointOfInterestId);
 
             if (pointOfInterestFromStore == null)
+            {
+                _logger.LogInformation($"Point of interest with id {pointOfInterestId} wasn't found when accessing points of interest.");
                 return NotFound();
+            }
 
             city.PointsOfInterests.Remove(pointOfInterestFromStore);
             return NoContent();
