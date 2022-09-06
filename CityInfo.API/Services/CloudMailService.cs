@@ -1,15 +1,15 @@
 ﻿namespace CityInfo.API.Services
 {
-    public class LocalMailService : IMailService
+    public class CloudMailService : IMailService
     {
         private string _mailTo = "admin@mycompany.com";
         private string _mailFrom = "noreply@mycompany.com";
 
-        //Dummy mailservice, output to console
+        //Dummy "cloud" mailservice, output to console
         public void Send(string subject, string message)
         {
             Console.WriteLine($"Mail from {_mailFrom} to {_mailTo}, " +
-                $"with {nameof(LocalMailService)}.");
+                $"with {nameof(CloudMailService)}.");
             Console.WriteLine($"Subject: {subject}.");
             Console.WriteLine($"Message: {message}.");
 

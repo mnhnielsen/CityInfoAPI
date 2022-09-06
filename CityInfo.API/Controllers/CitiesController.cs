@@ -9,23 +9,25 @@ namespace CityInfo.API.Controllers
     public class CitiesController : ControllerBase
     {
         private readonly ILogger<CitiesController> _logger;
+        private readonly CitiesDataStore _cityDataStore;
 
-        public CitiesController(ILogger<CitiesController> logger)
+        public CitiesController(ILogger<CitiesController> logger, CitiesDataStore cityDataStore)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _cityDataStore = cityDataStore ?? throw new ArgumentNullException(nameof(cityDataStore));
         }
 
         [HttpGet()]
         public ActionResult<IEnumerable<CityDto>> GetCities()
         {
-            var cities = CitiesDataStore.Current.Cities;
+            var cities = _cityDataStore.Cities;
             return Ok(cities);
         }
 
         [HttpGet("{id}")]
         public ActionResult<CityDto> GetCity(int id)
         {
-            var cityToReturn = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == id);
+            var cityToReturn = _cityDataStore.Cities.FirstOrDefault(c => c.Id == id);
 
             if (cityToReturn == null)
             {
