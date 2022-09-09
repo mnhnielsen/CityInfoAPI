@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CityInfo.API.Services
 {
-    public class CityInfoRepository : ICityInfoRespository
+    public class CityInfoRepository : ICityInfoRepository
     {
 
         private readonly CityInfoContext _context;
