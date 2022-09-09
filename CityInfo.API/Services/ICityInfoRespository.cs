@@ -8,10 +8,10 @@ namespace CityInfo.API.Services
         Task<IEnumerable<City>> GetCitiesAsync();
 
         //Nullable with ?
-        Task<City?> GetCityAsync(int cityId);
+        Task<City?> GetCityAsync(int cityId, bool includePointsOfInterst);
 
-        Task<IEnumerable<PointOfInterest>> GetPointOfInterestForCityAsync(int cityId);
+        Task<IEnumerable<PointOfInterest>> GetPointsOfInterestForCityAsync(int cityId, int pointOfInterstId);
 
-        Task<PointOfInterest?> GetPointOfInterestForCityAsync(int cityId, int pointOfInterestId);
+        Task<PointOfInterest?> GetPointOfInterestForCityAsync(int cityId);
     }
 }
