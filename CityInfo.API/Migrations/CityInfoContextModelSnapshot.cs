@@ -39,20 +39,20 @@ namespace CityInfo.API.Migrations
                         new
                         {
                             Id = 1,
-                            Description = "The one with that big park",
-                            Name = "New York"
+                            Description = "The one with that big park.",
+                            Name = "New York City"
                         },
                         new
                         {
                             Id = 2,
-                            Description = "The one with the good kebab",
-                            Name = "Berlin"
+                            Description = "The one with the cathedral that was never really finished.",
+                            Name = "Antwerp"
                         },
                         new
                         {
                             Id = 3,
-                            Description = "The one with that big tower with the clock",
-                            Name = "London"
+                            Description = "The one with that big tower.",
+                            Name = "Paris"
                         });
                 });
 
@@ -92,16 +92,37 @@ namespace CityInfo.API.Migrations
                         new
                         {
                             Id = 2,
-                            CityId = 2,
-                            Description = "The most famous Berlin Wall checkpoints from the Cold War.",
-                            Name = "Checkpoint Charlie"
+                            CityId = 1,
+                            Description = "A 102-story skyscraper located in Midtown Manhattan.",
+                            Name = "Empire State Building"
                         },
                         new
                         {
                             Id = 3,
-                            CityId = 1,
-                            Description = "Many of the biggest and well known companies are traded publicly on this exchange.",
-                            Name = "New York Stock Exchange"
+                            CityId = 2,
+                            Description = "A Gothic style cathedral, conceived by architects Jan and Pieter Appelmans.",
+                            Name = "Cathedral"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CityId = 2,
+                            Description = "The the finest example of railway architecture in Belgium.",
+                            Name = "Antwerp Central Station"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CityId = 3,
+                            Description = "A wrought iron lattice tower on the Champ de Mars, named after engineer Gustave Eiffel.",
+                            Name = "Eiffel Tower"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CityId = 3,
+                            Description = "The world's largest museum.",
+                            Name = "The Louvre"
                         });
                 });
 

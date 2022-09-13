@@ -9,9 +9,11 @@
         {
             get
             {
-                return PointsOfInterests.Count;
+                return PointsOfInterest.Count;
             }
         }
-        public ICollection<PointOfInterestDto> PointsOfInterests { get; set; } = new List<PointOfInterestDto>();
+
+        public ICollection<PointOfInterestDto> PointsOfInterest { get; set; }
+            = new List<PointOfInterestDto>();
     }
 }

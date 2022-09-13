@@ -1,6 +1,6 @@
 ﻿namespace CityInfo.API.Models
 {
-    public class CityWithoutPointsOfInterstsDto
+    public class CityWithoutPointsOfInterestDto
     {
         public int Id { get; set; }
         public string Name{ get; set; } = string.Empty;

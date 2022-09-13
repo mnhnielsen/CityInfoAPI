@@ -18,23 +18,29 @@ namespace CityInfo.API.Services
             return await _context.Cities.OrderBy(c => c.Name).ToListAsync();
         }
 
-        public async Task<City?> GetCityAsync(int cityId, bool includePointsOfInterst)
+        public async Task<City?> GetCityAsync(int cityId, bool includePointsOfInterest)
         {
-            if (includePointsOfInterst)
-                return await _context.Cities.Include(c => c.PointsOfInterest).Where(c => c.Id == cityId).FirstOrDefaultAsync();
+            if (includePointsOfInterest)
+            {
+                return await _context.Cities.Include(c => c.PointsOfInterest)
+                    .Where(c => c.Id == cityId).FirstOrDefaultAsync();
+            }
 
-            return await _context.Cities.Where(c => c.Id == cityId).FirstOrDefaultAsync();
+            return await _context.Cities
+                  .Where(c => c.Id == cityId).FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<PointOfInterest>> GetPointsOfInterestForCityAsync(int cityId, int pointOfInterestId)
+        public async Task<PointOfInterest?> GetPointOfInterestForCityAsync(int cityId, int pointOfInterestId)
         {
-            return await _context.PointsOfInterest.Where(p => p.CityId == cityId && p.Id == pointOfInterestId).ToListAsync();
+            return await _context.PointsOfInterest
+               .Where(p => p.CityId == cityId && p.Id == pointOfInterestId)
+               .FirstOrDefaultAsync();
         }
 
-        public async Task<PointOfInterest?> GetPointOfInterestForCityAsync(int cityId)
+        public async Task<IEnumerable<PointOfInterest>> GetPointsOfInterestForCityAsync(int cityId)
         {
-            return await _context.PointsOfInterest.Where(p => p.CityId == cityId).FirstOrDefaultAsync();
-
+            return await _context.PointsOfInterest
+                           .Where(p => p.CityId == cityId).ToListAsync();
         }
     }
 }

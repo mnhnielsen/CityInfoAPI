@@ -35,7 +35,7 @@ namespace CityInfo.API.Controllers
                     return NotFound();
                 }
 
-                return Ok(city.PointsOfInterests);
+                return Ok(city.PointsOfInterest);
             }
             catch (Exception ex)
             {
@@ -56,7 +56,7 @@ namespace CityInfo.API.Controllers
                 return NotFound();
             }
 
-            var pointOfInterest = city.PointsOfInterests.FirstOrDefault(c => c.Id == pointOfInterestId);
+            var pointOfInterest = city.PointsOfInterest.FirstOrDefault(c => c.Id == pointOfInterestId);
 
             if (pointOfInterest == null)
             {
@@ -81,7 +81,7 @@ namespace CityInfo.API.Controllers
 
             //demo purposes - to be improved
             var id = _citiesDataStore.Cities.SelectMany(
-                c => c.PointsOfInterests).Max(p => p.Id);
+                c => c.PointsOfInterest).Max(p => p.Id);
 
             var finalPointOfInterest = new PointOfInterestDto()
             {
@@ -89,7 +89,7 @@ namespace CityInfo.API.Controllers
                 Name = pointOfInterest.Name,
                 Description = pointOfInterest.Description
             };
-            city.PointsOfInterests.Add(finalPointOfInterest);
+            city.PointsOfInterest.Add(finalPointOfInterest);
 
             return CreatedAtRoute("GetPointOfInterest",
                  new
@@ -110,7 +110,7 @@ namespace CityInfo.API.Controllers
                 return NotFound();
             }
 
-            var pointOfInterestToUpdate = city.PointsOfInterests.FirstOrDefault(c => c.Id == pointOfInterestId);
+            var pointOfInterestToUpdate = city.PointsOfInterest.FirstOrDefault(c => c.Id == pointOfInterestId);
 
             if (pointOfInterestToUpdate == null)
             {
@@ -135,7 +135,7 @@ namespace CityInfo.API.Controllers
                 return NotFound();
             }
 
-            var pointOfInterestFromStore = city.PointsOfInterests.FirstOrDefault(c => c.Id == pointOfInterestId);
+            var pointOfInterestFromStore = city.PointsOfInterest.FirstOrDefault(c => c.Id == pointOfInterestId);
 
             if (pointOfInterestFromStore == null)
             {
@@ -172,7 +172,7 @@ namespace CityInfo.API.Controllers
                 return NotFound();
             }
 
-            var pointOfInterestFromStore = city.PointsOfInterests.FirstOrDefault(c => c.Id == pointOfInterestId);
+            var pointOfInterestFromStore = city.PointsOfInterest.FirstOrDefault(c => c.Id == pointOfInterestId);
 
             if (pointOfInterestFromStore == null)
             {
@@ -180,7 +180,7 @@ namespace CityInfo.API.Controllers
                 return NotFound();
             }
 
-            city.PointsOfInterests.Remove(pointOfInterestFromStore);
+            city.PointsOfInterest.Remove(pointOfInterestFromStore);
             _localMailService.Send("Point of interested deleted.",
                 $"Point of interest {pointOfInterestFromStore.Name} with id {pointOfInterestFromStore.Id} was deleted.");
             return NoContent();
