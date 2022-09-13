@@ -18,4 +18,4 @@ I used the following:
 
 **Architecture**
 
-![architecture](https://raw.githubusercontent.com/mnhnielsen/CityInfoAPI/main/Resources/Architecture.jpg)
+![architecture](https://raw.githubusercontent.com/mnhnielsen/CityInfoAPI/main/Resources/ArchitectureAPI.png)
