@@ -7,7 +7,7 @@
 - .NET Core
 - C#
 
-I used the following:
+**I used the following:**
 - Dependency Injection
 - Repository Pattern
 - SQLite
