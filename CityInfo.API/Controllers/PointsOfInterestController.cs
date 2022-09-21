@@ -139,7 +139,7 @@ namespace CityInfo.API.Controllers
                 return NotFound();
 
             _cityInfoRepository.DeletePointOfInterest(pointOfInterstEntity);
-            _cityInfoRepository.SaveChangesAsync();
+            await _cityInfoRepository.SaveChangesAsync();
             return NoContent();
         }
     }
