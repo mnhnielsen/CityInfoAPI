@@ -28,7 +28,7 @@ namespace CityInfo.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PointOfInterestDto>>> GetPointsOfInterest(int cityId)
         {
-            if(!await _cityInfoRepository.CityExistsAsync(cityId))
+            if (!await _cityInfoRepository.CityExistsAsync(cityId))
             {
                 _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.", DateTime.UtcNow.ToLongTimeString());
                 return NotFound();
@@ -57,38 +57,29 @@ namespace CityInfo.API.Controllers
             return Ok(_mapper.Map<PointOfInterestDto>(pointOfInterest));
         }
 
-        //[HttpPost]
-        //public ActionResult<PointOfInterestDto> CreatePointInterest(int cityId, PointOfInterestForCreationDto pointOfInterest)
-        //{
+        [HttpPost]
+        public async Task<ActionResult<PointOfInterestDto>> CreatePointInterest(int cityId, PointOfInterestForCreationDto pointOfInterest)
+        {
 
 
-        //    var city = _citiesDataStore.Cities.FirstOrDefault(c => c.Id == cityId);
-        //    if (city == null)
-        //    {
-        //        _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.", DateTime.UtcNow.ToLongTimeString());
-        //        return NotFound();
-        //    }
+            if (!await _cityInfoRepository.CityExistsAsync(cityId))
+                return NotFound();
 
-        //    //demo purposes - to be improved
-        //    var id = _citiesDataStore.Cities.SelectMany(
-        //        c => c.PointsOfInterest).Max(p => p.Id);
+            var finalPointOfInterest = _mapper.Map<Entities.PointOfInterest>(pointOfInterest);
 
-        //    var finalPointOfInterest = new PointOfInterestDto()
-        //    {
-        //        Id = ++id,
-        //        Name = pointOfInterest.Name,
-        //        Description = pointOfInterest.Description
-        //    };
-        //    city.PointsOfInterest.Add(finalPointOfInterest);
+            await _cityInfoRepository.AddPointOfInterestForCityAsync(cityId, finalPointOfInterest);
+            await _cityInfoRepository.SaveChangesAsync();
 
-        //    return CreatedAtRoute("GetPointOfInterest",
-        //         new
-        //         {
-        //             cityId = cityId,
-        //             pointOfInterestId = finalPointOfInterest.Id
-        //         },
-        //         finalPointOfInterest);
-        //}
+            var createdPointOfInterestToReturn = _mapper.Map<Models.PointOfInterestDto>(finalPointOfInterest);
+
+            return CreatedAtRoute("GetPointOfInterest",
+                 new
+                 {
+                     cityId = cityId,
+                     pointOfInterestId = createdPointOfInterestToReturn.Id
+                 },
+                 createdPointOfInterestToReturn);
+        }
 
         //[HttpPut("{pointofinterestid}")]
         //public ActionResult UpdatePointOfInterest(int cityId, int pointOfInterestId, PointOfInterestForUpdateDto pointOfInterest)
