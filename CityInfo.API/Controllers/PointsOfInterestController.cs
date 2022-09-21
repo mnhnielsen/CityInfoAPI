@@ -81,30 +81,24 @@ namespace CityInfo.API.Controllers
                  createdPointOfInterestToReturn);
         }
 
-        //[HttpPut("{pointofinterestid}")]
-        //public ActionResult UpdatePointOfInterest(int cityId, int pointOfInterestId, PointOfInterestForUpdateDto pointOfInterest)
-        //{
-        //    var city = _citiesDataStore.Cities.FirstOrDefault(c => c.Id == cityId);
-        //    if (city == null)
-        //    {
-        //        _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.", DateTime.UtcNow.ToLongTimeString());
-        //        return NotFound();
-        //    }
+        [HttpPut("{pointofinterestid}")]
+        public async Task<ActionResult> UpdatePointOfInterest(int cityId, int pointOfInterestId, PointOfInterestForUpdateDto pointOfInterest)
+        {
+            if (!await _cityInfoRepository.CityExistsAsync(cityId))
+                return NotFound();
 
-        //    var pointOfInterestToUpdate = city.PointsOfInterest.FirstOrDefault(c => c.Id == pointOfInterestId);
+            var pointOfInterstEntity = await _cityInfoRepository.GetPointOfInterestForCityAsync(cityId, pointOfInterestId);
+            if (pointOfInterstEntity == null)
+                return NotFound();
 
-        //    if (pointOfInterestToUpdate == null)
-        //    {
-        //        _logger.LogInformation($"Point of interest with id {pointOfInterestId} wasn't found when accessing points of interest.", DateTime.UtcNow.ToLongTimeString());
-        //        return NotFound();
-        //    }
+            //Auto override from source, to destination.
+            _mapper.Map(pointOfInterest, pointOfInterstEntity);
+            await _cityInfoRepository.SaveChangesAsync();
+            
 
-        //    pointOfInterestToUpdate.Name = pointOfInterest.Name;
-        //    pointOfInterestToUpdate.Description = pointOfInterest.Description;
+            return NoContent();
 
-        //    return NoContent();
-
-        //}
+        }
 
         //[HttpPatch("{pointofinterestid}")]
         //public ActionResult PartiallyUpdatePointOfInterest(int cityId, int pointOfInterestId, JsonPatchDocument<PointOfInterestForUpdateDto> patchDocument)
