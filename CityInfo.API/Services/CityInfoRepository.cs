@@ -13,6 +13,15 @@ namespace CityInfo.API.Services
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
+        public async Task<IEnumerable<City>> GetCitiesAsync(string? name)
+        {
+            if (string.IsNullOrEmpty(name))
+                return await GetCitiesAsync();
+
+            name = name.Trim();
+            return await _context.Cities.Where(c=>c.Name == name).OrderBy(c=>c.Name).ToListAsync();
+        }
+
         public async Task<IEnumerable<City>> GetCitiesAsync()
         {
             return await _context.Cities.OrderBy(c => c.Name).ToListAsync();
