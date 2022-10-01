@@ -7,7 +7,7 @@ namespace CityInfo.API.Services
         //Async - freeing up threads asap for other tasks. Improves scalability.
         Task<IEnumerable<City>> GetCitiesAsync();
 
-        Task<IEnumerable<City>> GetCitiesAsync(string? name);
+        Task<IEnumerable<City>> GetCitiesAsync(string? name, string? searchQuery);
 
         //Nullable with ?
         Task<City?> GetCityAsync(int cityId, bool includePointsOfInterest);
