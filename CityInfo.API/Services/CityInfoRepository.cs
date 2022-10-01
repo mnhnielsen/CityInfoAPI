@@ -13,16 +13,15 @@ namespace CityInfo.API.Services
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
-        public async Task<IEnumerable<City>> GetCitiesAsync(string? name, string? searchQuery)
+        public async Task<IEnumerable<City>> GetCitiesAsync(string? name, string? searchQuery, int pageNumber, int pageSize)
         {
-            if (string.IsNullOrEmpty(name) && string.IsNullOrWhiteSpace(searchQuery))
-                return await GetCitiesAsync();
+            
 
             // collection to start from with search and filtering.
             var collection = _context.Cities as IQueryable<City>;
 
             //Filtering
-            if(!string.IsNullOrWhiteSpace(name))
+            if (!string.IsNullOrWhiteSpace(name))
             {
                 name = name.Trim();
                 collection = collection.Where(c => c.Name == name);
@@ -32,10 +31,14 @@ namespace CityInfo.API.Services
             if (!string.IsNullOrWhiteSpace(searchQuery))
             {
                 searchQuery = searchQuery.Trim();
-                collection = collection.Where(a=>a.Name.Contains(searchQuery) || (a.Description != null && a.Description.Contains(searchQuery)));
+                collection = collection.Where(a => a.Name.Contains(searchQuery) || (a.Description != null && a.Description.Contains(searchQuery)));
             }
 
-            return await collection.OrderBy(c => c.Name).ToListAsync();
+            //Apply pageing last.
+            return await collection.OrderBy(c => c.Name)
+                .Skip(pageSize * (pageNumber - 1))
+                .Take(pageSize)
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<City>> GetCitiesAsync()
