@@ -45,7 +45,7 @@ builder.Services.AddScoped<ICityInfoRepository, CityInfoRepository>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-builder.Services.AddAuthentication("Berer").AddJwtBearer(options =>
+builder.Services.AddAuthentication("Bearer").AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new()
     {
