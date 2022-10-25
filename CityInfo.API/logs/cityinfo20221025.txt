@@ -1,0 +1,34 @@
+2022-10-25 11:48:26.121 +02:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2022-10-25 11:48:26.194 +02:00 [DBG] Hosting starting
+2022-10-25 11:48:26.352 +02:00 [DBG] Using development certificate: CN=localhost (Thumbprint: BA0C4803A4DD944DA82C66AA2AABE4F4D116EA04)
+2022-10-25 11:48:26.379 +02:00 [INF] Now listening on: https://localhost:7228
+2022-10-25 11:48:26.381 +02:00 [INF] Now listening on: http://localhost:5228
+2022-10-25 11:48:26.384 +02:00 [DBG] Loaded hosting startup assembly CityInfo.API
+2022-10-25 11:48:26.384 +02:00 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2022-10-25 11:48:26.385 +02:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2022-10-25 11:48:26.386 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-25 11:48:26.386 +02:00 [INF] Hosting environment: Development
+2022-10-25 11:48:26.387 +02:00 [INF] Content root path: C:\Users\mnhnielsen\Documents\Projects\CityInfo\CityInfo.API\
+2022-10-25 11:48:26.388 +02:00 [DBG] Hosting started
+2022-10-25 11:48:26.728 +02:00 [DBG] Connection id "0HMLMDO89BNMA" accepted.
+2022-10-25 11:48:26.730 +02:00 [DBG] Connection id "0HMLMDO89BNMA" started.
+2022-10-25 11:48:26.735 +02:00 [DBG] Connection id "0HMLMDO89BNMB" accepted.
+2022-10-25 11:48:26.737 +02:00 [DBG] Connection id "0HMLMDO89BNMB" started.
+2022-10-25 11:48:26.770 +02:00 [DBG] Connection id "0HMLMDO89BNMA" received FIN.
+2022-10-25 11:48:26.770 +02:00 [DBG] Connection id "0HMLMDO89BNMB" received FIN.
+2022-10-25 11:48:26.780 +02:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException:  Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.<FillHandshakeBufferAsync>g__InternalFillHandshakeBufferAsync|189_0[TIOAdapter](TIOAdapter adap, ValueTask`1 task, Int32 minSize)
+   at System.Net.Security.SslStream.ReceiveBlobAsync[TIOAdapter](TIOAdapter adapter)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](TIOAdapter adapter, Boolean receiveFirst, Byte[] reAuthenticationData, Boolean isApm)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2022-10-25 11:48:26.780 +02:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException:  Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.<FillHandshakeBufferAsync>g__InternalFillHandshakeBufferAsync|189_0[TIOAdapter](TIOAdapter adap, ValueTask`1 task, Int32 minSize)
+   at System.Net.Security.SslStream.ReceiveBlobAsync[TIOAdapter](TIOAdapter adapter)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](TIOAdapter adapter, Boolean receiveFirst, Byte[] reAuthenticationData, Boolean isApm)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2022-10-25 11:48:26.804 +02:00 [DBG] Connection id "0HMLMDO89BNMA" stopped.
+2022-10-25 11:48:26.804 +02:00 [DBG] Connection id "0HMLMDO89BNMB" stopped.
+2022-10-25 11:48:26.805 +02:00 [DBG] Connection id "0HMLMDO89BNMA" sending FIN because: "The Socket transport's send loop completed gracefully."
+2022-10-25 11:48:26.806 +02:00 [DBG] Connection id "0HMLMDO89BNMB" sending FIN because: "The Socket transport's send loop completed gracefully."

@@ -1,4 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace CityInfo.API.Controllers
 {
@@ -6,6 +10,8 @@ namespace CityInfo.API.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
+
+        private readonly IConfiguration _configuration;
 
         public class AuthenticationRequestBody
         {
@@ -15,13 +21,18 @@ namespace CityInfo.API.Controllers
 
         private class CityInfoUser
         {
-            private int UserId { get; set; }
-            private string UserName { get; set; }
+            public int UserId { get; set; }
+            public string UserName { get; set; }
             public string FirstName { get; set; }
             public string LastName { get; set; }
             public string City { get; set; }
 
-            public CityInfoUser(int userId, string userName, string firstName, string lastName, string city)
+            public CityInfoUser(
+                int userId,
+                string userName,
+                string firstName,
+                string lastName,
+                string city)
             {
                 UserId = userId;
                 UserName = userName;
@@ -29,15 +40,48 @@ namespace CityInfo.API.Controllers
                 LastName = lastName;
                 City = city;
             }
+
+        }
+
+        public AuthenticationController(IConfiguration configuration)
+        {
+            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
         [HttpPost("authenticate")]
-        public IActionResult<string> Authenticate(AuthenticationRequestBody authenticationRequestBody)
+        public ActionResult<string> Authenticate(AuthenticationRequestBody authenticationRequestBody)
         {
+            //1. Valudate the username/password
             var user = ValidateUserCredentials(authenticationRequestBody.UserName, authenticationRequestBody.Password);
 
             if (user == null)
                 return Unauthorized();
+
+            //2. Create a token
+            var securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["Authentication:SecretForKey"]));
+
+            //Sign with Sha256
+            var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            var claimsForToken = new List<Claim>();
+            claimsForToken.Add(new Claim("sub", user.UserId.ToString()));
+            claimsForToken.Add(new Claim("given_name", user.FirstName));
+            claimsForToken.Add(new Claim("family_name", user.LastName));
+            claimsForToken.Add(new Claim("city", user.City));
+
+            var jwtSecurityToken = new JwtSecurityToken(
+                _configuration["Authentication:Issuer"],
+                _configuration["Authentication:Audience"],
+                claimsForToken, 
+                DateTime.UtcNow, 
+                DateTime.UtcNow.AddHours(1), 
+                signingCredentials);
+
+
+            var tokenToReturn = new JwtSecurityTokenHandler()
+                .WriteToken(jwtSecurityToken);
+
+            return Ok(tokenToReturn);
 
 
         }
