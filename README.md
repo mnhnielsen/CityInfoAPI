@@ -15,6 +15,7 @@
 - Data Transfer Objects
 - HTTP(GET, POST, PUT, PATCH, DELETE, Statuscodes)
 - Postman for testing endpoints and Swagger for documentation
+- Basic Authentication
 
 ### Architecture
 
