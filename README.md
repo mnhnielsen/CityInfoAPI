@@ -1,10 +1,10 @@
-# CityInfo - ASP.NET Core 6 Web API
+# CityInfo - .NET 6 Web API
  
 **An API that returns information on a city that is stored in a database.**
 
 ### The purpose of this project is to learn and practice concepts related to:
 - Building a REST API
-- .NET Core
+- .NET 6
 - C#
 
 **I used the following:**
@@ -13,7 +13,7 @@
 - SQLite
 - Entity Framework Core 6
 - Data Transfer Objects
-- HTTP(GET, POST, PUT, PATCH, DELETE, Statuscodes)
+- HTTP(GET, POST, PUT, PATCH, DELETE, StatusCodes)
 - Postman for testing endpoints and Swagger for documentation
 - Basic Authentication
 
